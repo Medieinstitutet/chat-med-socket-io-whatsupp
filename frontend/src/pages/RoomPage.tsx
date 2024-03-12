@@ -1,9 +1,9 @@
-import { useState } from "react"
+import { useState } from "react";
 import * as io from "socket.io-client";
 
-const socket = io.connect("http://localhost:5000");
+const socket = io.connect("http://localhost:3000");
 
-function Room () {
+function Room() {
   const [username, setUsername] = useState("");
   const [room, setRoom] = useState("");
 
@@ -15,15 +15,23 @@ function Room () {
   return (
     <>
       <h3>Join a Chat!</h3>
-      <input type="text" placeholder="Username" onChange={(event) => {
-        setUsername(event.target.value);
-      }} />
-      <input type="text" placeholder="Room id or global chat" onChange={(event) => {
-        setRoom(event.target.value);
-      }}/>
+      <input
+        type="text"
+        placeholder="Username"
+        onChange={(event) => {
+          setUsername(event.target.value);
+        }}
+      />
+      <input
+        type="text"
+        placeholder="Room id or global chat"
+        onChange={(event) => {
+          setRoom(event.target.value);
+        }}
+      />
       <button onClick={join}>Join a room</button>
     </>
-  )
+  );
 }
 
-export default Room
+export default Room;
