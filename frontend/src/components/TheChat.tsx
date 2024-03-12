@@ -31,10 +31,16 @@ export const TheChat = ({ socket, selectedRoom, handleClick, chatRooms }: IChatM
     };
 
     const handleGenre = () => {
-    
-                setShowUsername(false);
-                setShowGenreOptions(true);
+        socket?.emit("add_user", userName )
+
+       
+ 
+
+       setShowUsername(false);
+            setShowGenreOptions(true);
+            
     }
+
 
     const chat = (e: ChangeEvent<HTMLSelectElement>) => {
         handleClick(e.target.value)
@@ -83,7 +89,6 @@ export const TheChat = ({ socket, selectedRoom, handleClick, chatRooms }: IChatM
                         <li key={m.roomId}
                             id={m.user === userName ? "you" : "user"}> <h6>{m.user} {new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes()}</h6>
                             {m.text}
-                            <button onClick={() => {}}>Update</button>
                         </li>
                     ))}
                 </ul>

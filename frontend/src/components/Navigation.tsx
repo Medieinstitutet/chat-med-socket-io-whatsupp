@@ -11,9 +11,6 @@ export const Navigation = () => {
                     <li>
                         <NavLink to="/chat">Chat</NavLink>
                     </li>
-                    <li>
-                        <NavLink to="/about">About us</NavLink>
-                    </li>
                 </ul>
             </nav>
         </>
