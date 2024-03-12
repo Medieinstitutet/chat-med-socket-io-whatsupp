@@ -1,27 +1,22 @@
 import { createBrowserRouter } from "react-router-dom";
-import HomePage from "../pages/homePage";
-import ErrorPage from "../pages/errorPage";
-import ChatPage from "../pages/chatPage";
-import RoomPage from "../pages/RoomPage";
+import { Chat } from "../pages/Chat";
+import { Home } from "../pages/Home";
+import { Layout } from "../pages/Layou";
 
-export const router = createBrowserRouter([
-  {
-    path: "/",
-    errorElement: <ErrorPage />,
-    children: [
-      {
+export const Router = createBrowserRouter ([
+    {
         path: "/",
-        element: <HomePage />,
-        index: true,
-      },
-      {
-        path: "/room",
-        element: <RoomPage />,
-      },
-      {
-        path: "/chat",
-        element: <ChatPage />,
-      },
-    ],
-  },
-]);
+        element: <Layout></Layout>,
+        children: [
+            {
+                path: "/",
+                element: <Home />,
+                index: true,
+            },
+            {
+                path: "/chat",
+                element: <Chat />,
+            },
+        ]
+    }
+])
