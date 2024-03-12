@@ -4,7 +4,7 @@ function homePage() {
   
   return (
     <>
-      <Link to="/room"  >
+      <Link to="/room">
         <button className="chat-btn">Börja Chatta!</button>
       </Link>      
     </>

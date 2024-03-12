@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import * as io from "socket.io-client";
 
 const socket = io.connect("http://localhost:3000");
@@ -29,7 +30,9 @@ function Room() {
           setRoom(event.target.value);
         }}
       />
+      <NavLink to={"/chat"}>
       <button onClick={join}>Join a room</button>
+      </NavLink>
     </>
   );
 }
