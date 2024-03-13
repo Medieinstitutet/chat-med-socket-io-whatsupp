@@ -1,5 +1,5 @@
 export type Massege = {
-    user: string;  
-    roomId: string;
-    text: string;
-  }
+  user: string;
+  roomId: string;
+  text: string;
+};

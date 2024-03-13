@@ -1,0 +1,112 @@
+:root {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+html {
+  height: 100vh;
+  background-color: #1aab8a;
+}
+a,
+h1,
+h2 {
+  text-decoration: none;
+  list-style: none;
+  margin: 2rem;
+  color: white;
+  font-weight: 100;
+}
+
+ul {
+  padding: 0;
+  height: 3rem;
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  justify-content: center;
+}
+
+li {
+  text-align: center;
+}
+
+li:nth-child(2),
+li:nth-child(3) {
+  display: none;
+}
+
+.home-page-btn {
+  background: #1aab8a;
+  color: #fff;
+  border: none;
+  position: relative;
+  height: 60px;
+  font-size: 1.6em;
+  padding: 0 2em;
+  cursor: pointer;
+  transition: 800ms ease all;
+  outline: none;
+}
+.home-page-btn:hover {
+  background: #fff;
+  color: #1aab8a;
+}
+.home-page-btn:before,
+.home-page-btn:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2px;
+  width: 0;
+  background: #ffffff;
+  transition: 400ms ease all;
+}
+.home-page-btn:after {
+  right: inherit;
+  top: inherit;
+  left: 0;
+  bottom: 0;
+}
+.home-page-btn:hover:before,
+.home-page-btn:hover:after {
+  width: 100%;
+  transition: 800ms ease all;
+}
+
+.home-page-btn-container,
+.Username-container,
+.Room-container {
+  text-align: center;
+  margin: 0;
+  text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.Username-container input,
+.Room-container input {
+  background: #ffffff;
+  border: none;
+  height: 1.5rem;
+  border-radius: 4px;
+  margin: 0.5em;
+}
+
+.Username-container button,
+.Room-container button,
+.Room-container option {
+  background: #ffffff;
+  color: #808382;
+  border: 1px solid white;
+  border-radius: 4px;
+}
+
+.Username-container button:hover,
+.Room-container button:hover {
+  border: 1px solid white;
+  color: #1aab8a;
+}
