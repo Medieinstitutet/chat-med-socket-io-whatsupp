@@ -39,6 +39,7 @@ export const TheChat = ({
   };
 
   const handleGenre = () => {
+    socket?.emit("send_username", userName);
     setShowUsername(false);
     setShowGenreOptions(true);
   };

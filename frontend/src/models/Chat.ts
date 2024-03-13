@@ -1,4 +1,4 @@
-export type Massege = {
+export type Chat = {
   user: string;
   roomId: string;
   text: string;

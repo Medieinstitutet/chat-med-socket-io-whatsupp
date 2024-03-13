@@ -97,16 +97,9 @@ li:nth-child(3) {
 }
 
 .Username-container button,
-.Room-container button,
-.Room-container option {
+.Room-container button {
   background: #ffffff;
-  color: #808382;
+
   border: 1px solid white;
   border-radius: 4px;
-}
-
-.Username-container button:hover,
-.Room-container button:hover {
-  border: 1px solid white;
-  color: #1aab8a;
 }
