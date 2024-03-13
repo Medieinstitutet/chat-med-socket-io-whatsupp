@@ -32,6 +32,7 @@ export const TheChat = ({ socket, selectedRoom, handleClick, chatRooms }: IChatM
 
     const handleGenre = () => {
     
+        socket?.emit("send_username", userName);
                 setShowUsername(false);
                 setShowGenreOptions(true);
     }
