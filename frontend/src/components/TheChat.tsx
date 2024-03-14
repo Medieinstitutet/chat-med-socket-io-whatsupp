@@ -4,6 +4,7 @@ import { Socket } from "socket.io-client";
 import { Rooms } from "../models/Rooms";
 // import { ShowMassege } from "./ShowMassege";
 import "../main.css";
+import "../Chat.css";
 
 interface IChatMassegeProps {
   socket: Socket | undefined;
@@ -84,33 +85,40 @@ export const TheChat = ({
       )}
 
       {showChat && (
-        <article>
-          <h2>{userName}</h2>
-          <input
-            type="text"
-            value={massege}
-            onChange={(e) => setMassege(e.target.value)}
-          />
+        <>
+          <h2 className="room-title">Room: {selectedRoom?.name}</h2>
 
-          <button onClick={senMassege}>Send</button>
-
-          <ul>
+          <article className="chat-container">
             {selectedRoom?.Chat.map((m) => (
               // return <ShowMassege key={m.roomId} massegeShow={m} />
-              <li key={m.roomId} id={m.user === userName ? "you" : "user"}>
+              <li
+                className="message-container"
+                key={m.roomId}
+                id={m.user === userName ? "you" : "user"}
+              >
                 {" "}
+                <p>{m.text}</p>
                 <h6>
                   {m.user}{" "}
                   {new Date(Date.now()).getHours() +
                     ":" +
                     new Date(Date.now()).getMinutes()}
                 </h6>
-                {m.text}
-                <button onClick={() => {}}>Update</button>
+                {/* <button onClick={() => {}}>Update</button> */}
               </li>
             ))}
-          </ul>
-        </article>
+          </article>
+          <div className="chat-input-container">
+            <input
+              type="text"
+              placeholder="Message..."
+              value={massege}
+              onChange={(e) => setMassege(e.target.value)}
+            />
+
+            <button onClick={senMassege}>Send</button>
+          </div>
+        </>
       )}
     </>
   );

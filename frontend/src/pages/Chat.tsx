@@ -1,49 +1,47 @@
-import { Socket, io } from "socket.io-client"
-import { useEffect, useState } from "react"
-
-import { Rooms } from "../models/Rooms"
+import { Socket, io } from "socket.io-client";
+import { useEffect, useState } from "react";
+import { Rooms } from "../models/Rooms";
 import { TheChat } from "../components/TheChat";
+import "../Chat.css";
 
 export const Chat = () => {
-    const [socket, setSocket] = useState<Socket>();
-    const [rooms, setRooms] = useState<Rooms[]>([]);
-    const [selectedRoom, setSelectedRoom] = useState<Rooms>();
-    
-    useEffect(() => {
-        if(socket) return;
+  const [socket, setSocket] = useState<Socket>();
+  const [rooms, setRooms] = useState<Rooms[]>([]);
+  const [selectedRoom, setSelectedRoom] = useState<Rooms>();
 
-        const s = io("http://localhost:3000");
+  useEffect(() => {
+    if (socket) return;
 
-        s.on("rooms_list", (rooms: Rooms[]) => {
-            setRooms(rooms)
-        })
-        
-        s.on("massege-accepted", (room: Rooms) => {
-            setSelectedRoom(room)
-        })
+    const s = io("http://localhost:3000");
 
-        setSocket(s)
-          
-    }, [setSocket, socket])
+    s.on("rooms_list", (rooms: Rooms[]) => {
+      setRooms(rooms);
+    });
 
-    const handleClick = (id: string) => {
+    s.on("massege-accepted", (room: Rooms) => {
+      setSelectedRoom(room);
+    });
 
-        socket?.emit("join_room", id, (room: Rooms) => {
-            console.log("Joined room", room);
-            setSelectedRoom(room)
-        })
-    }
+    setSocket(s);
+  }, [setSocket, socket]);
 
-    return <>  
-    <section className="chat-container">
+  const handleClick = (id: string) => {
+    socket?.emit("join_room", id, (room: Rooms) => {
+      console.log("Joined room", room);
+      setSelectedRoom(room);
+    });
+  };
 
-    <TheChat socket={socket} 
-        selectedRoom={selectedRoom} 
-        handleClick={handleClick} 
-        chatRooms={rooms}/>
-
-    </section>
-
-
+  return (
+    <>
+      <section>
+        <TheChat
+          socket={socket}
+          selectedRoom={selectedRoom}
+          handleClick={handleClick}
+          chatRooms={rooms}
+        />
+      </section>
     </>
-}
+  );
+};
