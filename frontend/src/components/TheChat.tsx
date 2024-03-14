@@ -55,6 +55,11 @@ export const TheChat = ({
     });
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      sendMassege();
+    }
+  };
 
   return (
     <>
@@ -68,7 +73,10 @@ export const TheChat = ({
             onChange={(e) => setUserName(e.target.value)}
           />
 
-          <select onChange={(e) => handleClick(e.target.value)}>
+          <select
+            className="select-genre"
+            onChange={(e) => handleClick(e.target.value)}
+          >
             <option value="Select genre" selected disabled>
               Select genre
             </option>
@@ -81,9 +89,8 @@ export const TheChat = ({
           <button onClick={handleStartChatting}>Next</button>
         </article>
       )}
-    
 
-      {showChat && 
+      {showChat && (
         <>
           <h2 className="room-title">Room: {selectedRoom?.id}</h2>
 
@@ -93,42 +100,40 @@ export const TheChat = ({
               placeholder="Message..."
               value={massege}
               onChange={(e) => setMassege(e.target.value)}
+              onKeyPress={handleKeyPress}
             />
 
             <button onClick={sendMassege}>Send</button>
           </div>
 
           <ul>
-          <article className="chat-container">
-            {/* <h2 className="room-title">Room: {selectedRoom?.name}</h2> */}
+            <article className="chat-container">
+              {/* <h2 className="room-title">Room: {selectedRoom?.name}</h2> */}
 
-            {/* <button onClick={sendMassege}>Send</button> */}
+              {/* <button onClick={sendMassege}>Send</button> */}
 
-            {selectedRoom?.Chat.map((m) => (
-              // return <ShowMassege key={m.roomId} massegeShow={m} />
-              <li
-                className="message-container"
-                key={m.roomId}
-                id={m.user === userName ? "you" : "user"}
-              >
-                {" "}
-                <p>{m.text}</p>
-                <h6>
-                  {m.user}{" "}
-                  {new Date(Date.now()).getHours() +
-                    ":" +
-                    new Date(Date.now()).getMinutes()}
-                </h6>
-                {/* <button onClick={() => {}}>Update</button> */}
-              </li>
-            ))}
-          </article>
+              {selectedRoom?.Chat.map((m) => (
+                // return <ShowMassege key={m.roomId} massegeShow={m} />
+                <li
+                  className="message-container"
+                  key={m.roomId}
+                  id={m.user === userName ? "you" : "user"}
+                >
+                  {" "}
+                  <p>{m.text}</p>
+                  <h6>
+                    {m.user}{" "}
+                    {new Date(Date.now()).getHours() +
+                      ":" +
+                      new Date(Date.now()).getMinutes()}
+                  </h6>
+                  {/* <button onClick={() => {}}>Update</button> */}
+                </li>
+              ))}
+            </article>
           </ul>
         </>
-    }
+      )}
     </>
-)
-}
-
-  
-
+  );
+};

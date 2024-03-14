@@ -40,29 +40,22 @@ li:nth-child(3) {
   background: #1aab8a;
   color: #fff;
   border: none;
-  position: relative;
   height: 60px;
   font-size: 1.6em;
   padding: 0 2em;
   cursor: pointer;
   transition: 800ms ease all;
   outline: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .home-page-btn:hover {
   background: #fff;
   color: #1aab8a;
 }
-.home-page-btn:before,
-.home-page-btn:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 2px;
-  width: 0;
-  background: #ffffff;
-  transition: 400ms ease all;
-}
+
 .home-page-btn:after {
   right: inherit;
   top: inherit;
@@ -83,17 +76,21 @@ li:nth-child(3) {
   gap: 2rem;
 }
 
-.Username-container .Username-container-title h2 {
-  padding: 0;
-  width: 100vw;
-  text-align: start;
+.Username-container-title {
+  padding-top: 3rem;
+}
+
+h2 {
+  padding-top: 2rem;
+  margin: 0;
+  width: 100%;
 }
 
 .Username-container input,
-.Room-container input {
+.select-genre {
   background: #ffffff;
   border: 2px solid #1aab8a;
-  height: 1.5rem;
+  height: 1.7rem;
 }
 
 .Username-container button,
@@ -104,7 +101,7 @@ li:nth-child(3) {
   padding: 0.45rem;
 }
 
-.Username-container button:hover,
-.Room-container button:hover {
+.Username-container button:hover {
   cursor: pointer;
+  border: 2px solid #6cb5a4;
 }
