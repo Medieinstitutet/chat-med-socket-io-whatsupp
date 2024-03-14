@@ -32,7 +32,8 @@ export const Chat = () => {
     });
   };
 
-    return <>  
+    return (
+    <>  
     <section className="chat-container">
 
     <TheChat socket={socket} 

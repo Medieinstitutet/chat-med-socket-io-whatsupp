@@ -55,6 +55,7 @@ export const TheChat = ({
     });
   };
 
+
   return (
     <>
       {showUsernameAndRoom && (
@@ -78,14 +79,23 @@ export const TheChat = ({
           </select>
             <button onClick={handleStartChatting}>Next</button>
         </article>
-      )};
+      )}
     
 
-      {showChat && (
+      {showChat && 
         <>
-          <h2 className="room-title">Room: {selectedRoom?.name}</h2>
+          <h2 className="room-title">Room: {selectedRoom?.id}</h2>
 
-          <button onClick={sendMassege}>Send</button>
+          <div className="chat-input-container">
+            <input
+              type="text"
+              placeholder="Message..."
+              value={massege}
+              onChange={(e) => setMassege(e.target.value)}
+            />
+
+            <button onClick={sendMassege}>Send</button>
+          </div>
 
           <ul>
           <article className="chat-container">
@@ -108,18 +118,12 @@ export const TheChat = ({
               </li>
             ))}
           </article>
-          <div className="chat-input-container">
-            <input
-              type="text"
-              placeholder="Message..."
-              value={massege}
-              onChange={(e) => setMassege(e.target.value)}
-            />
-
-            <button onClick={senMassege}>Send</button>
-          </div>
+          </ul>
         </>
-      )}
+    }
     </>
-  );
-};
+)
+}
+
+  
+
