@@ -40,7 +40,7 @@ export const Chat = () => {
     <TheChat socket={socket} 
         selectedRoom={selectedRoom} 
         handleClick={handleClick} 
-        chatRooms={rooms}/>
+        rooms={rooms}/>
 
     </section>
 

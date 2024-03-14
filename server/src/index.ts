@@ -10,12 +10,10 @@ let users: string[] = []
 let room: Rooms[] = [
     {
         id: "For Fun",
-        name: "AAA",
         Chat: [] 
     },
     {
         id: "Single",
-        name: "AAA",
         Chat: []
     },
 ]
@@ -55,7 +53,7 @@ io.on("connection", (socket) => {
       
         const mass = room.find((m) => m.id === massege.roomId);
         mass?.Chat.push(massege);
-        console.log("Messege for ypu",massege)
+        console.log("The messege",massege)
 
  
         io.to(massege.roomId).emit(
@@ -65,9 +63,16 @@ io.on("connection", (socket) => {
     });
 
     socket.on("send_username", (username: string) => {
-
-        users.push(username)
-        console.log("The user is in users array", users)
+        users.forEach((user) => {
+            if (user === username) {
+                socket.emit("user_exist");
+                return;
+            }
+        }); if (!users.includes(username)) {
+            users.push(username);
+            io.emit("show_theChat"); 
+            console.log("The user is in users array", users);
+        }
     });
 });
 
