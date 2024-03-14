@@ -32,16 +32,17 @@ export const Chat = () => {
     });
   };
 
-  return (
-    <>
-      <section>
-        <TheChat
-          socket={socket}
-          selectedRoom={selectedRoom}
-          handleClick={handleClick}
-          chatRooms={rooms}
-        />
-      </section>
+    return <>  
+    <section className="chat-container">
+
+    <TheChat socket={socket} 
+        selectedRoom={selectedRoom} 
+        handleClick={handleClick} 
+        rooms={rooms}/>
+
+    </section>
+
+
     </>
   );
 };
