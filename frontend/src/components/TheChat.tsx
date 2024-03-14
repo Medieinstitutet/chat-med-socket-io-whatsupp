@@ -39,19 +39,19 @@ export const TheChat = ({
   };
 
   const handleStartChatting = () => {
-      if(userName === "" || selectedRoom === undefined){
-        return alert("Välj ett användarnamn samt rum för att gå med i chatten")
-      }
-      
-      socket?.emit("send_username", userName);
+    if (userName === "" || selectedRoom === undefined) {
+      return alert("Välj ett användarnamn samt rum för att gå med i chatten");
+    }
 
-      socket?.on("user_exist", () => {
-        alert("Användarnamnet är upptaget")
-      });
+    socket?.emit("send_username", userName);
 
-      socket?.on("show_theChat", () => {
-        setShowChat(true);
-        setShowUsernameAndRoom(false)
+    socket?.on("user_exist", () => {
+      alert("Användarnamnet är upptaget");
+    });
+
+    socket?.on("show_theChat", () => {
+      setShowChat(true);
+      setShowUsernameAndRoom(false);
     });
   };
 
@@ -59,12 +59,13 @@ export const TheChat = ({
     <>
       {showUsernameAndRoom && (
         <article className="Username-container">
-          <h2 className="Username-container-title">Enter A Name And Select A Room</h2>
+          <h2 className="Username-container-title">Enter A Name and Room</h2>
           <input
             type="text"
             placeholder="Name..."
             value={userName}
-            onChange={(e) => setUserName(e.target.value)}/>
+            onChange={(e) => setUserName(e.target.value)}
+          />
 
           <select onChange={(e) => handleClick(e.target.value)}>
             <option value="Select genre" selected disabled>
@@ -76,19 +77,17 @@ export const TheChat = ({
               </option>
             ))}
           </select>
-            <button onClick={handleStartChatting}>Next</button>
+          <button onClick={handleStartChatting}>Next</button>
         </article>
-      )};
-    
+      )}
 
       {showChat && (
         <>
-          <h2 className="room-title">Room: {selectedRoom?.name}</h2>
-
-          <button onClick={sendMassege}>Send</button>
-
-          <ul>
           <article className="chat-container">
+            {/* <h2 className="room-title">Room: {selectedRoom?.name}</h2> */}
+
+            {/* <button onClick={sendMassege}>Send</button> */}
+
             {selectedRoom?.Chat.map((m) => (
               // return <ShowMassege key={m.roomId} massegeShow={m} />
               <li
@@ -108,6 +107,7 @@ export const TheChat = ({
               </li>
             ))}
           </article>
+
           <div className="chat-input-container">
             <input
               type="text"
@@ -115,8 +115,7 @@ export const TheChat = ({
               value={massege}
               onChange={(e) => setMassege(e.target.value)}
             />
-
-            <button onClick={senMassege}>Send</button>
+            <button onClick={sendMassege}>Send</button>
           </div>
         </>
       )}
