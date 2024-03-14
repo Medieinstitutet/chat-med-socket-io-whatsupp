@@ -1,5 +1,5 @@
 // import { IoIosSend, IoMdCloseCircle } from 'react-icons/io';
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import { Socket } from "socket.io-client";
 import { Rooms } from "../models/Rooms";
 // import { ShowMassege } from "./ShowMassege";
@@ -10,23 +10,22 @@ interface IChatMassegeProps {
   socket: Socket | undefined;
   selectedRoom: Rooms | undefined;
   handleClick: (id: string) => void;
-  chatRooms: Rooms[];
+  rooms: Rooms[];
 }
 
 export const TheChat = ({
   socket,
   selectedRoom,
   handleClick,
-  chatRooms,
+  rooms,
 }: IChatMassegeProps) => {
   const [userName, setUserName] = useState("");
   const [massege, setMassege] = useState("");
 
-  const [showUsername, setShowUsername] = useState(true);
-  const [showGenreOptions, setShowGenreOptions] = useState(false);
-  const [showChat, setShowCat] = useState(false);
+  const [showUsernameAndRoom, setShowUsernameAndRoom] = useState(true);
+  const [showChat, setShowChat] = useState(false);
 
-  const senMassege = () => {
+  const sendMassege = () => {
     socket?.emit("send-massege", {
       user: userName,
       roomId: selectedRoom?.id,
@@ -39,56 +38,56 @@ export const TheChat = ({
     setMassege("");
   };
 
-  const handleGenre = () => {
-    socket?.emit("send_username", userName);
-    setShowUsername(false);
-    setShowGenreOptions(true);
-  };
+  const handleStartChatting = () => {
+      if(userName === "" || selectedRoom === undefined){
+        return alert("Välj ett användarnamn samt rum för att gå med i chatten")
+      }
+      
+      socket?.emit("send_username", userName);
 
-  const chat = (e: ChangeEvent<HTMLSelectElement>) => {
-    handleClick(e.target.value);
-    setShowGenreOptions(false);
-    setShowCat(true);
+      socket?.on("user_exist", () => {
+        alert("Användarnamnet är upptaget")
+      });
+
+      socket?.on("show_theChat", () => {
+        setShowChat(true);
+        setShowUsernameAndRoom(false)
+    });
   };
 
   return (
     <>
-      {showUsername && (
+      {showUsernameAndRoom && (
         <article className="Username-container">
-          <h2 className="Username-container-title">Enter A Name</h2>
+          <h2 className="Username-container-title">Enter A Name And Select A Room</h2>
           <input
             type="text"
             placeholder="Name..."
             value={userName}
-            onChange={(e) => setUserName(e.target.value)}
-          />
+            onChange={(e) => setUserName(e.target.value)}/>
 
-          <button onClick={handleGenre}>Next</button>
-        </article>
-      )}
-
-      {showGenreOptions && (
-        <article className="Room-container">
-          <h2 className="Room-container-title">Enter A Room</h2>
-
-          <select onChange={chat}>
+          <select onChange={(e) => handleClick(e.target.value)}>
             <option value="Select genre" selected disabled>
               Select genre
             </option>
-            {chatRooms.map((r) => (
+            {rooms.map((r) => (
               <option key={r.id} value={r.id}>
-                {r.name}
+                {r.id}
               </option>
             ))}
           </select>
+            <button onClick={handleStartChatting}>Next</button>
         </article>
-      )}
+      )};
+    
 
       {showChat && (
         <>
           <h2 className="room-title">Room: {selectedRoom?.name}</h2>
 
-          <article className="chat-container">
+          <button onClick={sendMassege}>Send</button>
+
+          <ul>
             {selectedRoom?.Chat.map((m) => (
               // return <ShowMassege key={m.roomId} massegeShow={m} />
               <li
