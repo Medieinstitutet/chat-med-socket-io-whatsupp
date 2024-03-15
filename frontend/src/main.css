@@ -1,0 +1,107 @@
+:root {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  background-color: #e2f5f1;
+}
+
+html {
+  height: 100vh;
+}
+a,
+h1,
+h2 {
+  text-decoration: none;
+  list-style: none;
+  margin: 2rem;
+  color: #1aab8a;
+  font-weight: 100;
+}
+
+ul {
+  padding: 0;
+  height: 3rem;
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  justify-content: center;
+}
+
+li {
+  text-align: center;
+}
+
+li:nth-child(2),
+li:nth-child(3) {
+  display: none;
+}
+
+.home-page-btn {
+  background: #1aab8a;
+  color: #fff;
+  border: none;
+  height: 60px;
+  font-size: 1.6em;
+  padding: 0 2em;
+  cursor: pointer;
+  transition: 800ms ease all;
+  outline: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.home-page-btn:hover {
+  background: #fff;
+  color: #1aab8a;
+}
+
+.home-page-btn:after {
+  right: inherit;
+  top: inherit;
+  left: 0;
+  bottom: 0;
+}
+.home-page-btn:hover:before,
+.home-page-btn:hover:after {
+  width: 100%;
+  transition: 800ms ease all;
+}
+
+.Username-container {
+  margin: 0 auto;
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.Username-container-title {
+  padding-top: 3rem;
+}
+
+h2 {
+  padding-top: 2rem;
+  margin: 0;
+  width: 100%;
+}
+
+.Username-container input,
+.select-genre {
+  background: #ffffff;
+  border: 2px solid #1aab8a;
+  height: 1.7rem;
+}
+
+.Username-container button,
+.Room-container button {
+  background: #1aab8a;
+  color: white;
+  border: none;
+  padding: 0.45rem;
+}
+
+.Username-container button:hover {
+  cursor: pointer;
+  border: 2px solid #6cb5a4;
+}
