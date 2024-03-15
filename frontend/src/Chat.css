@@ -10,7 +10,7 @@
   background-color: #ffffff;
   width: 80vw;
   padding: 0;
-  height: 80vh;
+  height: 75vh;
   margin: 0 auto;
   overflow-y: auto;
   scroll-behavior: smooth;
@@ -58,7 +58,13 @@ h6 {
 .chat-input-container {
   display: flex;
   justify-content: center;
-  margin-top: 1rem;
+  margin-top: 2rem;
+  padding: 1rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
 }
 
 .chat-input-container input {

@@ -1,5 +1,5 @@
 // import { IoIosSend, IoMdCloseCircle } from 'react-icons/io';
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Socket } from "socket.io-client";
 import { Rooms } from "../models/Rooms";
 // import { ShowMassege } from "./ShowMassege";
@@ -24,6 +24,17 @@ export const TheChat = ({
 
   const [showUsernameAndRoom, setShowUsernameAndRoom] = useState(true);
   const [showChat, setShowChat] = useState(false);
+  const autoScroll = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    if (autoScroll.current) {
+      autoScroll.current.scrollIntoView({ behavior: "instant" });
+    }
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [selectedRoom?.Chat]);
 
   const sendMassege = () => {
     socket?.emit("send-massege", {
@@ -130,6 +141,7 @@ export const TheChat = ({
                   {/* <button onClick={() => {}}>Update</button> */}
                 </li>
               ))}
+              <div ref={autoScroll} />
             </article>
           </ul>
         </>
